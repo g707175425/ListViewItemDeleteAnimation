@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements OnDismissCallback {
     private MyAdapter adapter;
 
     {
-        for (int i = 0;i<20;i++){
+        for (int i = 0;i<10;i++){
             strs.add("我是第:"+i+"个Item");
         }
     }
