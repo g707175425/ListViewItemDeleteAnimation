@@ -121,7 +121,7 @@ public abstract class SwipeTouchListener{
     /**
      * The current position being swiped.
      */
-    private SwipeDismissTouchListener.DeleteItemWrapper mCurrentPosition = null;
+    private FlingDismissListener.DeleteItemWrapper mCurrentPosition = null;
 
     /**
      * The number of items in the {@code AbsListView}, minus the pending dismissed items.
@@ -253,7 +253,7 @@ public abstract class SwipeTouchListener{
      *
      * @param position the position of the item in the {@link android.widget.ListAdapter}. Must be visible.
      */
-    public boolean fling(SwipeDismissTouchListener.DeleteItemWrapper position) {
+    public boolean fling(FlingDismissListener.DeleteItemWrapper position) {
         int firstVisiblePosition = mListViewWrapper.getFirstVisiblePosition();
         int lastVisiblePosition = mListViewWrapper.getLastVisiblePosition();
         if (position.position < firstVisiblePosition || position.position > lastVisiblePosition) {
@@ -448,7 +448,7 @@ public abstract class SwipeTouchListener{
      * @param position     the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      * @param flingToRight {@code true} if the {@code View} should be flinged to the right, {@code false} if it should be flinged to the left.
      */
-    private void flingView(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position, final boolean flingToRight) {
+    private void flingView(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position, final boolean flingToRight) {
         if (mViewWidth < 2) {
             mViewWidth = mListViewWrapper.getListView().getWidth();
         }
@@ -506,7 +506,7 @@ public abstract class SwipeTouchListener{
      * @param view     the {@code View} that is being swiped.
      * @param position the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      */
-    protected void onStartSwipe(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+    protected void onStartSwipe(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position) {
     }
 
     /**
@@ -515,7 +515,7 @@ public abstract class SwipeTouchListener{
      * @param view     the {@code View} that was swiped.
      * @param position the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      */
-    protected void onCancelSwipe(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+    protected void onCancelSwipe(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position) {
     }
 
     /**
@@ -524,7 +524,7 @@ public abstract class SwipeTouchListener{
      * @param view     the {@code View} that is being swiped.
      * @param position the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      */
-    protected void afterCancelSwipe(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+    protected void afterCancelSwipe(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position) {
     }
 
     /**
@@ -533,7 +533,7 @@ public abstract class SwipeTouchListener{
      * @param view     the {@code View} that is being flinged.
      * @param position the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      */
-    protected void beforeViewFling(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+    protected void beforeViewFling(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position) {
     }
 
     /**
@@ -545,7 +545,7 @@ public abstract class SwipeTouchListener{
      *
      * @return {@code true} if the item would leave the data set, {@code false} otherwise.
      */
-    protected abstract boolean willLeaveDataSetOnFling(@NonNull View view, SwipeDismissTouchListener.DeleteItemWrapper position);
+    protected abstract boolean willLeaveDataSetOnFling(@NonNull View view, FlingDismissListener.DeleteItemWrapper position);
 
     /**
      * Called after the fling animation of a succesful swipe ends.
@@ -554,7 +554,7 @@ public abstract class SwipeTouchListener{
      * @param view     the {@code View} that is being swiped.
      * @param position the position of the item in the {@link android.widget.ListAdapter} corresponding to the {@code View}.
      */
-    protected abstract void afterViewFling(@NonNull View view, SwipeDismissTouchListener.DeleteItemWrapper position);
+    protected abstract void afterViewFling(@NonNull View view, FlingDismissListener.DeleteItemWrapper position);
 
     /**
      * Restores the {@link View}'s {@code alpha} and {@code translationX} values.
@@ -606,9 +606,9 @@ public abstract class SwipeTouchListener{
         @NonNull
         private final View mView;
 
-        private SwipeDismissTouchListener.DeleteItemWrapper mPosition;
+        private FlingDismissListener.DeleteItemWrapper mPosition;
 
-        private FlingAnimatorListener(@NonNull final View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+        private FlingAnimatorListener(@NonNull final View view, FlingDismissListener.DeleteItemWrapper position) {
             mView = view;
             mPosition = position;
         }
@@ -628,9 +628,9 @@ public abstract class SwipeTouchListener{
         @NonNull
         private View mView;
 
-        private SwipeDismissTouchListener.DeleteItemWrapper mPosition;
+        private FlingDismissListener.DeleteItemWrapper mPosition;
 
-        private RestoreAnimatorListener(@NonNull View view, SwipeDismissTouchListener.DeleteItemWrapper position) {
+        private RestoreAnimatorListener(@NonNull View view, FlingDismissListener.DeleteItemWrapper position) {
             mView = view;
             mPosition = position;
         }

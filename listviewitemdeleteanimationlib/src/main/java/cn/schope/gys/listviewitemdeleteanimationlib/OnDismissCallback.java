@@ -32,5 +32,5 @@ public interface OnDismissCallback<ItemType> {
      * @param reverseSortedPositions An array of positions to dismiss, sorted in descending order
      *                               for convenience.
      */
-    void onDismiss(@NonNull ViewGroup listView, @NonNull SwipeDismissTouchListener.DeleteItemWrapper<ItemType>[] reverseSortedPositions);
+    void onDismiss(@NonNull ViewGroup listView, @NonNull FlingDismissListener.DeleteItemWrapper<ItemType>[] reverseSortedPositions);
 }

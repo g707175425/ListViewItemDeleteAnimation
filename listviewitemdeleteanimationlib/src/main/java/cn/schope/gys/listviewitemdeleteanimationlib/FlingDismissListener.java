@@ -34,7 +34,7 @@ import java.util.List;
 
 /**
  */
-public class SwipeDismissTouchListener extends SwipeTouchListener {
+public class FlingDismissListener extends SwipeTouchListener {
 
     /**
      * The callback which gets notified of dismissed items.
@@ -79,7 +79,7 @@ public class SwipeDismissTouchListener extends SwipeTouchListener {
      * @param callback    The callback to trigger when the user has indicated that he
      */
     @SuppressWarnings("UnnecessaryFullyQualifiedName")
-    public SwipeDismissTouchListener(@NonNull final ListViewWrapper listViewWrapper, @NonNull final OnDismissCallback callback) {
+    public FlingDismissListener(@NonNull final ListViewWrapper listViewWrapper, @NonNull final OnDismissCallback callback) {
         super(listViewWrapper);
         mCallback = callback;
         mDismissAnimationTime = listViewWrapper.getListView().getContext().getResources().getInteger(android.R.integer.config_shortAnimTime);

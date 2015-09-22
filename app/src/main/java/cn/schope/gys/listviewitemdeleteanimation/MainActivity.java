@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 import cn.schope.gys.listviewitemdeleteanimationlib.MyListViewWrapper;
 import cn.schope.gys.listviewitemdeleteanimationlib.OnDismissCallback;
-import cn.schope.gys.listviewitemdeleteanimationlib.SwipeDismissTouchListener;
+import cn.schope.gys.listviewitemdeleteanimationlib.FlingDismissListener;
 
 public class MainActivity extends Activity implements OnDismissCallback {
 
-    private SwipeDismissTouchListener swipeDismissTouchListener;
+    private FlingDismissListener flingDismissListener;
     private ArrayList<String> strs = new ArrayList<String>();
     private MyAdapter adapter;
 
@@ -38,31 +38,31 @@ public class MainActivity extends Activity implements OnDismissCallback {
         adapter = new MyAdapter();
         lv.setAdapter(adapter);
         lv.setDivider(null);
-        swipeDismissTouchListener = new SwipeDismissTouchListener(new MyListViewWrapper(lv),this);
+        flingDismissListener = new FlingDismissListener(new MyListViewWrapper(lv),this);
 
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<SwipeDismissTouchListener.DeleteItemWrapper> deleteItems = new ArrayList<SwipeDismissTouchListener.DeleteItemWrapper>();
+                ArrayList<FlingDismissListener.DeleteItemWrapper> deleteItems = new ArrayList<FlingDismissListener.DeleteItemWrapper>();
                 for(int i = 0;i<strs.size();i++){
-                    deleteItems.add(new SwipeDismissTouchListener.DeleteItemWrapper(i,strs.get(i)));
+                    deleteItems.add(new FlingDismissListener.DeleteItemWrapper(i,strs.get(i)));
                 }
-                swipeDismissTouchListener.dismiss(deleteItems);
+                flingDismissListener.dismiss(deleteItems);
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                swipeDismissTouchListener.dismissOne(position,strs.get(position));
+                flingDismissListener.dismissOne(position, strs.get(position));
             }
         });
     }
 
     @Override
-    public void onDismiss(@NonNull ViewGroup listView, @NonNull SwipeDismissTouchListener.DeleteItemWrapper[] reverseSortedPositions) {
+    public void onDismiss(@NonNull ViewGroup listView, @NonNull FlingDismissListener.DeleteItemWrapper[] reverseSortedPositions) {
         //当item删除动画结束时执行这里
 
-        for (SwipeDismissTouchListener.DeleteItemWrapper deleteItem : reverseSortedPositions){
+        for (FlingDismissListener.DeleteItemWrapper deleteItem : reverseSortedPositions){
             //由于每次删除一些item所在的position都会改变,所以必须使用对象来删除.
             strs.remove(deleteItem.item);
         }
